@@ -6,6 +6,7 @@ import ThemesPage from "../page/themes/ThemesPage";
 import ThemeItem from "../page/themes/ThemeItem";
 import WelcomePage from "../page/welcome/WelcomePage";
 import { axiosRequest } from "../services/axiosInstance";
+import QuestItem from "../page/questions/QuestItem";
 
 function App() {
   const [themes, setThemes] = useState([]);
@@ -35,6 +36,7 @@ function App() {
           element={<ThemesPage themes={themes} setThemes={setThemes} />}
         />
         <Route path="/themes/:id" element={<ThemeItem />} />
+        <Route path="/themes/:themeId/questions/:questionId" element={<QuestItem/>}/>
       </Routes>
     </>
   );

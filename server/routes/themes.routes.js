@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const ThemeServices = require("../services/ThemeServices");
 const QuestionServices = require("../services/QuestionServices");
+const AnswerServices = require("../services/AnswerServices");
 
 router.get("/", async (req, res) => {
   try {
@@ -48,8 +49,9 @@ router.get("/:id/questions/:idQuest", async (req, res) => {
     const { id, idQuest } = req.params;
     const theme = await ThemeServices.getThemeById(id);
     const question = await QuestionServices.getQuestionById(idQuest);
+    const answers = await AnswerServices.getAnswersByQuestionId(idQuest)
     if (theme) {
-      res.status(200).json({ message: "success", theme, question });
+      res.status(200).json({ message: "success", theme, question, answers});
       return;
     }
     res.status(400).json({ message: "theme is not found" });

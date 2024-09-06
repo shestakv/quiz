@@ -9,6 +9,16 @@ class AnswerServices {
       console.log(message);
     }
   }
+
+  
+  static async getAnswersByQuestionId(questionId) {
+    try {
+      const answers = (await Answer.findAll({where:{questionId}})).map((el) => el.get());
+      return answers;
+    } catch ({ message }) {
+      console.log(message);
+    }
+  }
 }
 
 module.exports = AnswerServices;
