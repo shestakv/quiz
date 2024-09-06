@@ -1,32 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { axiosRequest } from "../../services/axiosInstance";
 import { Link, NavLink } from "react-router-dom";
 
-const [questions, setQiestions] = useSate([]);
-let firstElement;
-
-const getAllQuestionsByThemeId = async () => {
-  try {
-    const response = await axiosRequest.get(`/themes/${theme.id}/questions`);
-    if (response.status === 200) {
-      setQiestions(response.data.questions);
-      firstElement = questions[0].id;
+function ThemeItem({ theme }) {
+  const [questions, setQuestions] = useState([]);
+  const [firstQuestion, setFirstQuestion] = useState(0);
+  const getAllQuestionsByThemeId = async () => {
+    try {
+      const response = await axiosRequest.get(`/themes/${theme.id}/questions`);
+      if (response.status === 200) {
+        setQuestions(response.data.questions);
+        setFirstQuestion(response.data.questions[0].id);
+      }
+    } catch ({ response }) {
+      console.log(response.data.message);
     }
-  } catch ({ response }) {
-    console.log(response.data.message);
-  }
-};
+  };
 
-useEffect(() => {
-  getAllQuestionsByThemeId();
-}, []);
+  useEffect(() => {
+    getAllQuestionsByThemeId();
+  }, []);
 
-function ThemeItem({ theme, questions }) {
   return (
     <>
-      <Link to={`/themes/${theme.id}/question/${firstElement}`}>
+      <Link to={`/themes/${theme.id}/questions/${firstQuestion}`}>
         {theme.title}
       </Link>
+      <br />
     </>
   );
 }

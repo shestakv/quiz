@@ -4,6 +4,8 @@ import Navbar from "../widgets/navbar/Navbar";
 import { Route, Routes } from "react-router-dom";
 import ThemesPage from "../page/themes/ThemesPage";
 import ThemeItem from "../page/themes/ThemeItem";
+import WelcomePage from "../page/welcome/WelcomePage";
+import { axiosRequest } from "../services/axiosInstance";
 
 function App() {
   const [themes, setThemes] = useState([]);
@@ -12,7 +14,7 @@ function App() {
     try {
       const response = await axiosRequest.get("/themes");
       if (response.status === 200) {
-        setUniverses(response.data.themes);
+        setThemes(response.data.themes);
       }
     } catch ({ response }) {
       console.log(response.data.message);
