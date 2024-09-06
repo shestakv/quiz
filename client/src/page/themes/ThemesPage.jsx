@@ -1,8 +1,14 @@
-import React from'react';
+import React from "react";
+import ThemeItem from "./ThemeItem";
 
-function ThemesPage({ title }) {
+function ThemesPage({ themes, setThemes }) {
   return (
-      <div><h1>ThemesPage</h1></div>
+    <div>
+      {themes &&
+        themes.map((theme) => (
+          <ThemeItem key={theme.id} theme={theme} setThemes={setThemes} />
+        ))}
+    </div>
   );
 }
 

@@ -4,7 +4,7 @@ function Navbar() {
   return (
     <div>
       <h1>
-        <NavLink to="/">QUIZ</NavLink>
+        <NavLink to="/themes">QUIZ</NavLink>
       </h1>
     </div>
   );
