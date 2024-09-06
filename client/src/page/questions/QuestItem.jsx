@@ -1,23 +1,44 @@
-import React, { useState } from'react';
-function QuestItem({ question, setQuestions, answers, setAnswers }) {
-    
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { axiosRequest } from "../../services/axiosInstance";
+function QuestItem() {
+  const { themeId, questionId } = useParams();
+    const [question, setQuestion] = useState([]);
+    const [answers, setAnswers] = useState([]);
 
-    const [questions, setQuestions] = useState([])
-
-    const onHandleGet = async () => {
-        const response = await axiosRequest.get(`/themes/${themes.id}/questions/${questions.id}`)
-        if(response.status === 200){
-            question = questions.find(() => )
-        }
+    const onHandleShow = () => {
+        setShow((prev) => !prev)
     }
 
-    // setAnswers((prev) => prev.filter((answer) => answer.id === question.id))
+
+  const getQuestionByQuestionId = async () => {
+    try {
+      const response = await axiosRequest.get(
+        `/themes/${+themeId}/questions/${+questionId}`
+      );
+      if (response.status === 200) {
+        setQuestion(response.data.question);
+        setAnswers(response.data.answers);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+console.log(question)
+console.log(answers)
+  useEffect(() => {
+    getQuestionByQuestionId();
+  }, []);
 
   return (
-      <div><h1>Question</h1></div>
+    <div>
+      <h2>{question.title}</h2>
+       <button onClick={onHandleShow}>{answers[0].title}</button>
+       <button onClick={onHandleShow}>{answers[1].title}</button>
+       <button onClick={onHandleShow}>{answers[2].title}</button>
+       <button onClick={onHandleShow}>{answers[3].title}</button>
+    </div>
   );
 }
-
-// 1 ансвер, выцепляем по квестайди, который совпадает с квестионАйди
 
 export default QuestItem;
