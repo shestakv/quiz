@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { axiosRequest } from "../../services/axiosInstance";
 import { Link, NavLink } from "react-router-dom";
+import './ThemePage.css'
 
 function ThemeItem({ theme }) {
   const [questions, setQuestions] = useState([]);
@@ -23,7 +24,7 @@ function ThemeItem({ theme }) {
 
   return (
     <>
-      <Link to={`/themes/${theme.id}/questions/${firstQuestion}`}>
+      <Link to={`/themes/${theme.id}/questions/${firstQuestion}`} className="theme__title">
         {theme.title}
       </Link>
       <br />
