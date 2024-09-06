@@ -1,8 +1,11 @@
-import React from'react';
+import React, { useState } from'react';
 function QuestItem({ question, setQuestions, answers, setAnswers }) {
     
+
+    const [questions, setQuestions] = useState([])
+
     const onHandleGet = async () => {
-        const response = await axiosRequest.get(`/themes/${theme.id}/questions/${questions.id}`)
+        const response = await axiosRequest.get(`/themes/${themes.id}/questions/${questions.id}`)
         if(response.status === 200){
             question = questions.find(() => )
         }
