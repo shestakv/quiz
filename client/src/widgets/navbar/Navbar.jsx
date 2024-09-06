@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import ThemesPage from "../../page/themes/ThemesPage";
 function Navbar() {
   return (
     <div>

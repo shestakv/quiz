@@ -1,23 +1,32 @@
 import React from "react";
 import { axiosRequest } from "../../services/axiosInstance";
+import { Link, NavLink } from "react-router-dom";
 
-function ThemeItem({ theme, setThemes, setQuestions }) {
-  const onHandleOpenQuestion = async () => {
-    try {
-      const response = await axiosRequest.get(
-        `/themes/${theme.id}`
-        if (response.status === 200) {
-            setQuestions((prev)=> prev.filter((quest)=>quest.themeId === theme.id ))
-        }
-      );
-    } catch (error) {
-      console.log(error);
+const [questions, setQiestions] = useSate([]);
+let firstElement;
+
+const getAllQuestionsByThemeId = async () => {
+  try {
+    const response = await axiosRequest.get(`/themes/${theme.id}/questions`);
+    if (response.status === 200) {
+      setQiestions(response.data.questions);
+      firstElement = questions[0].id;
     }
-  };
+  } catch ({ response }) {
+    console.log(response.data.message);
+  }
+};
 
+useEffect(() => {
+  getAllQuestionsByThemeId();
+}, []);
+
+function ThemeItem({ theme, questions }) {
   return (
     <>
-      <button onClick={onHandleOpenQuestion}>{theme.title}</button>
+      <Link to={`/themes/${theme.id}/question/${firstElement}`}>
+        {theme.title}
+      </Link>
     </>
   );
 }

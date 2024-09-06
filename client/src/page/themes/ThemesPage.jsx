@@ -1,5 +1,6 @@
 import React from "react";
 import ThemeItem from "./ThemeItem";
+import { NavLink } from "react-router-dom";
 
 function ThemesPage({ themes, setThemes }) {
   return (
