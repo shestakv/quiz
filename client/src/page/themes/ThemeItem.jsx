@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { axiosRequest } from "../../services/axiosInstance";
 import { Link, NavLink } from "react-router-dom";
-import './ThemePage.css'
+import "./ThemePage.css";
 
 function ThemeItem({ theme }) {
-  const [questions, setQuestions] = useState([]);
   const [firstQuestion, setFirstQuestion] = useState(0);
   const getAllQuestionsByThemeId = async () => {
     try {
       const response = await axiosRequest.get(`/themes/${theme.id}/questions`);
       if (response.status === 200) {
-        setQuestions(response.data.questions);
         setFirstQuestion(response.data.questions[0].id);
       }
     } catch ({ response }) {
@@ -24,7 +22,10 @@ function ThemeItem({ theme }) {
 
   return (
     <>
-      <Link to={`/themes/${theme.id}/questions/${firstQuestion}`} className="theme__title">
+      <Link
+        to={`/themes/${theme.id}/questions/${firstQuestion}`}
+        className="theme__title"
+      >
         {theme.title}
       </Link>
       <br />

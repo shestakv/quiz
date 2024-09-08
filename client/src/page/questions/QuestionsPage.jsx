@@ -1,21 +1,12 @@
-import React from'react';
-function QuestionsPage({ questions, setQuestions, answers, setAnswers }) {
-
-
+import React from "react";
+function QuestionsPage({ questions }) {
   return (
-      <div>
-
-        {questions && questions.map((question) => (
-            <QuestItem 
-                key={question.id}
-                setQuestions={setQuestions}
-                question={question}
-                setAnswers={setAnswers}
-                answers={answers}
-            />
+    <div>
+      {questions &&
+        questions.map((question) => (
+          <QuestItem key={question.id} question={question} />
         ))}
-
-      </div>
+    </div>
   );
 }
 

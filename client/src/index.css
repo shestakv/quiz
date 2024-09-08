@@ -8,7 +8,7 @@
   background: url(./wallpaper.jpg) center center no-repeat  fixed;
   background-size: cover;
 
-
+  padding: 0 7rem;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
