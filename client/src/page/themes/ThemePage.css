@@ -1,0 +1,21 @@
+.theme {
+  font-size: 50px;
+  background: white;
+  width: 500px;
+  border-radius: 10px;
+}
+
+.theme__title {
+  color: rgb(0, 0, 0);
+  opacity: 0.5;
+  transition: 0.5s;
+}
+
+.theme__title:hover {
+  background: linear-gradient(red, blue);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 1;
+  transition: 0.5s;
+}
